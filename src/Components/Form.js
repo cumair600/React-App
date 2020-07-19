@@ -5,11 +5,18 @@ class Form extends React.Component {
     constructor(props)
     {
         super(props);
-        this.state = {text: ''}; 
+        this.state = {text: '', output: ''}; 
     }
 
-    foo = event => {
-        this.setState({text : event.target.value})
+    handleClick = (event) =>
+    {
+        event.preventDefault();
+        this.setState({output: this.state.text});
+    }
+
+    handleChange = (event) =>
+    {
+        this.setState({text: event.target.value})
     }
     
     render() {
@@ -17,9 +24,9 @@ class Form extends React.Component {
             <div className="Form">
                 <h1> Welcome </h1>
                 <label> Enter any Text:  </label>
-                <input type="text" name='text' /><br />
-                <input id='field' type="submit" value="Submit" onClick={this.foo} /><br />
-                <label> {this.state.text} </label>
+                <input type="text" name='text' onChange={this.handleChange}/><br />
+                <button onClick={this.handleClick}>Submit</button><br />
+                <label> {this.state.output} </label>
                 
             </div>
         );
